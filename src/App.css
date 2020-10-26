@@ -1,0 +1,26 @@
+body {
+    background: #EDEEF0;
+    font-family: 'Noto Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+.main-wrapper {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-areas: "navbar content";
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
+}
+
+.content {
+    grid-area: content;
+    background: #fff;
+    border-radius: 10px;
+}
+
+
+
+
+

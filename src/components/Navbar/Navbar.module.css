@@ -1,0 +1,7 @@
+.navbar {
+    grid-area: navbar;
+    height: 500px;
+    background: #fff;
+    padding-left: 10px;
+    border-radius: 10px;
+}
