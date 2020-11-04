@@ -2,11 +2,11 @@
     border-radius: 10px;
 }
 
-.mainImg {
+.profileImg {
     width: 100%;
     border-radius: 10px 10px 0 0;
 }
 
-.logoUser {
-    width: 50px;
+.profileMain {
+    padding: 10px;
 }

@@ -1,16 +1,16 @@
 import React from 'react';
 import style from './Header.module.css';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <div>
             <header className={style.header}>
-                <div>
+                <div className={style.headerLogo}>
                     <img
                         src="https://upload.wikimedia.org/wikipedia/ru/c/cf/%D0%9B%D0%BE%D0%B1%D0%BE%D1%81_%D0%A3%D0%9F%D0%9D%D0%A4%D0%9C_%28%D0%BB%D0%BE%D0%B3%D0%BE%29.png"
                         alt=""/>
                 </div>
-                <div>
+                <div className={style.headerName}>
                     My Social Network
                 </div>
             </header>

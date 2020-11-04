@@ -1,9 +1,11 @@
 import React from 'react';
-import style from './Footer.module.css';
+// import style from './Footer.module.css';
 
-const Footer = () => {
+const Footer = (props) => {
     return (
-        Footer
+        <div>
+            Footer
+        </div>
     );
 }
 

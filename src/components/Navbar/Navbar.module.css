@@ -2,6 +2,16 @@
     grid-area: navbar;
     height: 500px;
     background: #fff;
-    padding-left: 10px;
+    padding: 10px;
     border-radius: 10px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+
+.navbar a.active {
+    color: #0048BA;
 }

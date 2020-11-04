@@ -1,0 +1,23 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    padding: 10px;
+}
+
+.dialog a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+.dialog a.active {
+    color: #0048BA;
+}
+
+.dialog {
+    border-right: solid 3px #888888;
+}
+
+.messages {
+    padding-left: 10px;
+}
