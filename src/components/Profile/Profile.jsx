@@ -12,7 +12,7 @@ const Profile = (props) => {
             </div>
             <div className={style.profileMain}>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts postsDataMap={props.postsDataMap}/>
             </div>
         </div>
     );
