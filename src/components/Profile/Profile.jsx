@@ -8,11 +8,12 @@ const Profile = (props) => {
         <div className={style.profile}>
             <div>
                 <img className={style.profileImg}
-                     src="https://parksadventure.com/wp-content/uploads/2017/10/header-image-1-2.png" alt=""/>
+                     src="https://parksadventure.com/wp-content/uploads/2017/10/header-image-1-2.png"
+                     alt=""/>
             </div>
             <div className={style.profileMain}>
-            <ProfileInfo />
-            <MyPosts postsDataMap={props.postsDataMap}/>
+                <ProfileInfo/>
+                <MyPosts postsData={props.postsData}/>
             </div>
         </div>
     );

@@ -3,8 +3,11 @@ import style from './MyPosts.module.css';
 import Post from "./Post/Post";
 
 
-
 const MyPosts = (props) => {
+
+    let posts = props.postsData.map(post => <Post message={post.message}
+                                                  likesCount={post.like}/>)
+
     return (
         <div className={style.myPosts}>
             <div className={style.addPost}>
@@ -13,10 +16,12 @@ const MyPosts = (props) => {
                     <div>
                         <textarea name="" id="" cols="30" rows="3"></textarea>
                     </div>
-                    <div><button>Add Post</button></div>
+                    <div>
+                        <button>Add Post</button>
+                    </div>
                 </div>
             </div>
-            {props.postsDataMap}
+            {posts}
         </div>
     );
 }

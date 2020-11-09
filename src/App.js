@@ -22,12 +22,15 @@ const App = (props) => {
                 <div className="main-wrapper">
                     <Navbar/>
                     <div className="content">
-                        <Route path='/profile' render={ () => <Profile postsDataMap={props.postsDataMap}/>} />
-                        <Route path='/friends' render={ () => <Friends />}/>
-                        <Route path='/dialogs' render={ () => <Dialogs dialogDataMap={props.dialogDataMap} messagesDataMap={props.messagesDataMap}/> }/>
-                        <Route path='/news' render={ () => <News />}/>
-                        <Route path='/music' render={ () => <Music />}/>
-                        <Route path='/settings' render={ () => <Settings />}/>
+                        <Route path='/profile' render={() => <Profile
+                            postsData={props.postsData}/>}/>
+                        <Route path='/friends' render={() => <Friends/>}/>
+                        <Route path='/dialogs' render={() => <Dialogs
+                            dialogData={props.dialogData}
+                            messagesData={props.messagesData}/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
                     </div>
                     <Footer/>
                 </div>
