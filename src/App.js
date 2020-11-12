@@ -23,11 +23,10 @@ const App = (props) => {
                     <Navbar/>
                     <div className="content">
                         <Route path='/profile' render={() => <Profile
-                            postsData={props.postsData}/>}/>
+                            state={props.state.profilePage}/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
                         <Route path='/dialogs' render={() => <Dialogs
-                            dialogData={props.dialogData}
-                            messagesData={props.messagesData}/>}/>
+                            state={props.state.dialogPage}/>}/>
                         <Route path='/news' render={() => <News/>}/>
                         <Route path='/music' render={() => <Music/>}/>
                         <Route path='/settings' render={() => <Settings/>}/>

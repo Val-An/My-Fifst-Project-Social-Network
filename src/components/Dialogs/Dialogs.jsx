@@ -8,6 +8,7 @@ const Dialogs = (props) => {
     const DialogItem = (props) => {
         return (
             <div>
+                <img src={'../../Redux/img/' + props.avatar} alt=""/>
                 <NavLink to={'/dialogs/' + props.id}
                          activeClassName={style.active}>{props.name}</NavLink>
             </div>
@@ -20,10 +21,11 @@ const Dialogs = (props) => {
         )
     }
 
-    let dialog = props.dialogData.map(name => <DialogItem name={name.name}
-                                                          id={name.id}/>)
+    let dialog = props.state.dialogData.map(name => <DialogItem name={name.name}
+                                                                id={name.id}
+                                                                avatar={name.avatar}/>)
 
-    let messages = props.messagesData.map(message => <Message
+    let messages = props.state.messagesData.map(message => <Message
         message={message.message}/>)
 
     return (
