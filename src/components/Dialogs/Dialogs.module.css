@@ -21,3 +21,13 @@
 .messages {
     padding-left: 10px;
 }
+
+.userAvatar {
+    max-width: 40px;
+}
+
+.dialogItem {
+    display: grid;
+    grid-template-columns:50px 1fr ;
+    align-items: center;
+}

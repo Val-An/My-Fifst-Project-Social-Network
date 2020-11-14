@@ -1,0 +1,19 @@
+.friendsOnline {
+    margin-top: 40px;
+}
+
+.headText {
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.friendsOnlineItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-flow: row;
+}
+
+.userAvatar {
+    max-width: 40px;
+}

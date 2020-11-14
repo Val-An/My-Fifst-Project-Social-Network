@@ -7,10 +7,14 @@ const Dialogs = (props) => {
 
     const DialogItem = (props) => {
         return (
-            <div>
-                <img src={'../../Redux/img/' + props.avatar} alt=""/>
-                <NavLink to={'/dialogs/' + props.id}
-                         activeClassName={style.active}>{props.name}</NavLink>
+            <div className={style.dialogItem}>
+                <div>
+                    <img className={style.userAvatar} src={props.avatar} alt=""/>
+                </div>
+                <div className={style.dialogItemName}>
+                    <NavLink to={'/dialogs/' + props.id}
+                             activeClassName={style.active}>{props.name}</NavLink>
+                </div>
             </div>
         )
     }
@@ -21,11 +25,11 @@ const Dialogs = (props) => {
         )
     }
 
-    let dialog = props.state.dialogData.map(name => <DialogItem name={name.name}
+    const dialog = props.state.dialogData.map(name => <DialogItem name={name.name}
                                                                 id={name.id}
                                                                 avatar={name.avatar}/>)
 
-    let messages = props.state.messagesData.map(message => <Message
+    const messages = props.state.messagesData.map(message => <Message
         message={message.message}/>)
 
     return (
