@@ -22,9 +22,10 @@ let state = {
     profilePage: {
         postsData: [
             {id: 1, message: 'Hi, how are you ?', like: 15},
-            {id: 1, message: 'It\'s my first post', like: 18},
-            {id: 1, message: 'BlaBlaBla', like: 24}
+            {id: 2, message: 'It\'s my first post', like: 18},
+            {id: 3, message: 'BlaBlaBla', like: 24}
         ],
+        newPostText: ''
     },
 
     dialogPage: {
@@ -43,9 +44,53 @@ let state = {
             {id: 2, message: 'How are you'},
             {id: 3, message: 'Yo'},
             {id: 4, message: 'Yabadabadoo'},
-            {id: 4, message: 'YoYoYo'}
-        ]
+            {id: 5, message: 'YoYoYo'}
+        ],
+        newMessageText: ''
     }
+}
+
+let rerenderEntireTree = () => {
+
+}
+
+
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
+}
+
+export let addPost = () => {
+    let newId = state.profilePage.postsData.length + 1;
+    let newPost = {
+        id: newId,
+        message: state.profilePage.newPostText,
+        like: 0
+    };
+    state.profilePage.postsData.push(newPost);
+    rerenderEntireTree(state);
+    state.profilePage.newPostText = '';
+}
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+export let addMessage = () => {
+    let newId = state.dialogPage.messagesData.length + 1;
+    let newMessage = {
+        id: newId,
+        message: state.dialogPage.newMessageText,
+        like: 0
+    };
+    state.dialogPage.messagesData.push(newMessage);
+    rerenderEntireTree(state);
+    state.dialogPage.newMessageText = '';
+}
+
+export let updateNewMessageText = (newText) => {
+    state.dialogPage.newMessageText = newText;
+    rerenderEntireTree(state);
 }
 
 export default state;

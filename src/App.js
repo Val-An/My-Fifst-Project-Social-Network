@@ -10,6 +10,7 @@ import Friends from "./components/Friends/Friends";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import {updateNewMessageText, updateNewPostText} from "./Redux/state";
 
 
 const App = (props) => {
@@ -23,10 +24,14 @@ const App = (props) => {
                     <Navbar state={props.state.userList}/>
                     <div className="content">
                         <Route path='/profile' render={() => <Profile
-                            state={props.state.profilePage}/>}/>
+                            profilePage={props.state.profilePage}
+                            addPost={props.addPost}
+                            updateNewPostText={props.updateNewPostText}/>}/>
                         <Route path='/friends' render={() => <Friends/>}/>
                         <Route path='/dialogs' render={() => <Dialogs
-                            state={props.state.dialogPage}/>}/>
+                            state={props.state.dialogPage}
+                            addMessage={props.addMessage}
+                            updateNewMessageText={props.updateNewMessageText}/>}/>
                         <Route path='/news' render={() => <News/>}/>
                         <Route path='/music' render={() => <Music/>}/>
                         <Route path='/settings' render={() => <Settings/>}/>

@@ -2,6 +2,7 @@ import React from 'react';
 import style from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import {updateNewPostText} from "../../Redux/state";
 
 const Profile = (props) => {
     return (
@@ -13,7 +14,9 @@ const Profile = (props) => {
             </div>
             <div className={style.profileMain}>
                 <ProfileInfo/>
-                <MyPosts state={props.state}/>
+                <MyPosts profilePage={props.profilePage}
+                         addPost={props.addPost}
+                         updateNewPostText={props.updateNewPostText}/>
             </div>
         </div>
     );
