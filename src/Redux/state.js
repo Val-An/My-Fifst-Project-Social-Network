@@ -8,6 +8,12 @@ import icon_m_03 from './img/icon_m_03.png'
 import icon_m_04 from './img/icon_m_04.png'
 
 
+const ADD_POST = 'ADD_POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const ADD_MESSAGE = 'ADD_MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+
+
 let store = {
     _state: {
         userList: [
@@ -63,7 +69,7 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD_POST'){
+        if (action.type === 'ADD_POST') {
             let newId = this._state.profilePage.postsData.length + 1;
             let newPost = {
                 id: newId,
@@ -74,28 +80,53 @@ let store = {
             this._callSubsriber(store._state);
             this._state.profilePage.newPostText = '';
         }
-        if (action.type === 'UPDATE_NEW_POST_TEXT'){
+        if (action.type === 'UPDATE_NEW_POST_TEXT') {
             this._state.profilePage.newPostText = action.newText;
             this._callSubsriber(store._state);
         }
-        if (action.type === 'ADD_MESSAGE'){
+        if (action.type === 'ADD_MESSAGE') {
             let newId = this._state.dialogPage.messagesData.length + 1;
             let newMessage = {
                 id: newId,
                 message: this._state.dialogPage.newMessageText,
                 like: 0
             };
+            this._state.dialogPage.newMessageText = '';
             this._state.dialogPage.messagesData.push(newMessage);
             this._callSubsriber(store._state);
-            this._state.dialogPage.newMessageText = '';
         }
-            if(action.type === 'UPDATE_NEW_MESSAGE_TEXT'){
-                this._state.dialogPage.newMessageText = action.newText;
-                this._callSubsriber(store._state);
-            }
+        if (action.type === 'UPDATE_NEW_MESSAGE_TEXT') {
+            this._state.dialogPage.newMessageText = action.newText;
+            this._callSubsriber(store._state);
+        }
     },
 }
 
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const onPostChangeActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const onMessageChangeActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newText: text
+    }
+}
 
 
 export default store;
