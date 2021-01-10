@@ -62,37 +62,38 @@ let store = {
         this._callSubsriber = observer;
     },
 
-    addPost() {
-        let newId = this._state.profilePage.postsData.length + 1;
-        let newPost = {
-            id: newId,
-            message: this._state.profilePage.newPostText,
-            like: 0
-        };
-        this._state.profilePage.postsData.push(newPost);
-        this._callSubsriber(store._state);
-        this._state.profilePage.newPostText = '';
+    dispatch(action) {
+        if (action.type === 'ADD_POST'){
+            let newId = this._state.profilePage.postsData.length + 1;
+            let newPost = {
+                id: newId,
+                message: this._state.profilePage.newPostText,
+                like: 0
+            };
+            this._state.profilePage.postsData.push(newPost);
+            this._callSubsriber(store._state);
+            this._state.profilePage.newPostText = '';
+        }
+        if (action.type === 'UPDATE_NEW_POST_TEXT'){
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubsriber(store._state);
+        }
+        if (action.type === 'ADD_MESSAGE'){
+            let newId = this._state.dialogPage.messagesData.length + 1;
+            let newMessage = {
+                id: newId,
+                message: this._state.dialogPage.newMessageText,
+                like: 0
+            };
+            this._state.dialogPage.messagesData.push(newMessage);
+            this._callSubsriber(store._state);
+            this._state.dialogPage.newMessageText = '';
+        }
+            if(action.type === 'UPDATE_NEW_MESSAGE_TEXT'){
+                this._state.dialogPage.newMessageText = action.newText;
+                this._callSubsriber(store._state);
+            }
     },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubsriber(store._state);
-    },
-    addMessage() {
-        let newId = this._state.dialogPage.messagesData.length + 1;
-        let newMessage = {
-            id: newId,
-            message: this._state.dialogPage.newMessageText,
-            like: 0
-        };
-        this._state.dialogPage.messagesData.push(newMessage);
-        this._callSubsriber(store._state);
-        this._state.dialogPage.newMessageText = '';
-    },
-    updateNewMessageText(newText) {
-        this._state.dialogPage.newMessageText = newText;
-        this._callSubsriber(store._state);
-    },
-
 }
 
 
