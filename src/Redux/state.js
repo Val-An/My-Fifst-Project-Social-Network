@@ -33,7 +33,7 @@ let store = {
                 {id: 2, message: 'It\'s my first post', like: 18},
                 {id: 3, message: 'BlaBlaBla', like: 24}
             ],
-            newPostText: ''
+            newPostText: 'profileState'
         },
 
         dialogPage: {
@@ -54,7 +54,7 @@ let store = {
                 {id: 4, message: 'Yabadabadoo'},
                 {id: 5, message: 'YoYoYo'}
             ],
-            newMessageText: ''
+            newMessageText: 'dialogState'
         }
     },
     _callSubsriber() {
@@ -69,7 +69,7 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === 'ADD_POST') {
+        if (action.type === ADD_POST) {
             let newId = this._state.profilePage.postsData.length + 1;
             let newPost = {
                 id: newId,
@@ -80,11 +80,11 @@ let store = {
             this._callSubsriber(store._state);
             this._state.profilePage.newPostText = '';
         }
-        if (action.type === 'UPDATE_NEW_POST_TEXT') {
+        if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubsriber(store._state);
         }
-        if (action.type === 'ADD_MESSAGE') {
+        if (action.type === ADD_MESSAGE) {
             let newId = this._state.dialogPage.messagesData.length + 1;
             let newMessage = {
                 id: newId,
@@ -95,7 +95,7 @@ let store = {
             this._state.dialogPage.messagesData.push(newMessage);
             this._callSubsriber(store._state);
         }
-        if (action.type === 'UPDATE_NEW_MESSAGE_TEXT') {
+        if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogPage.newMessageText = action.newText;
             this._callSubsriber(store._state);
         }
