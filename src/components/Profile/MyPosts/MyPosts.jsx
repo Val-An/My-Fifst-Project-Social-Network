@@ -5,7 +5,6 @@ import {addPostActionCreator, onPostChangeActionCreator} from "../../../Redux/pr
 
 
 const MyPosts = (props) => {
-
     let posts = props.profilePage.postsData.map(post => <Post message={post.message}
                                                               likesCount={post.like}/>)
 
