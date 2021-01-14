@@ -6,24 +6,25 @@ const FriendsOnline = (props) => {
     const FriendsOnlineItem = (props) => {
 
         // if(props.status == 'online'){
-            return (
-                <div className={style.friendsOnlineItem}>
-                    <div>
-                        <img className={style.userAvatar} src={props.avatar} alt=""/>
-                        <div className={style.name}>
-                            {props.name}
-                        </div>
+        return (
+            <div className={style.friendsOnlineItem}>
+                <div>
+                    <img className={style.userAvatar} src={props.avatar} alt=""/>
+                    <div className={style.name}>
+                        {props.name}
                     </div>
-
                 </div>
-            )
+
+            </div>
+        )
         // }
     }
 
     const friendOnline = props.userList.userList.map(el => <FriendsOnlineItem id={el.id}
-                                                                  name={el.name}
-                                                                  avatar={el.avatar}
-                                                                  status={el.status}/>
+                                                                              key={el.id}
+                                                                              name={el.name}
+                                                                              avatar={el.avatar}
+                                                                              status={el.status}/>
     )
 
 
