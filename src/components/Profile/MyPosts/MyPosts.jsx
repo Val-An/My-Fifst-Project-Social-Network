@@ -4,7 +4,7 @@ import Post from "./Post/Post";
 
 
 const MyPosts = (props) => {
-    let posts = props.postsData.map(post => <Post message={post.message}
+    let posts = props.profilePage.postsData.map(post => <Post message={post.message}
                                                               likesCount={post.like}/>)
 
     let addPost = () => {
@@ -22,7 +22,7 @@ const MyPosts = (props) => {
                 <h3>My Posts</h3>
                 <div>
                     <div>
-                        <textarea onChange={onPostChange} value={props.newPostText}
+                        <textarea onChange={onPostChange} value={props.profilePage.newPostText}
                                   name="" id="" cols="30" rows="3"/>
                     </div>
                     <div>

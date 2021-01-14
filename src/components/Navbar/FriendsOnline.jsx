@@ -20,7 +20,7 @@ const FriendsOnline = (props) => {
         // }
     }
 
-    const friendOnline = props.state.userList.map(el => <FriendsOnlineItem id={el.id}
+    const friendOnline = props.userList.userList.map(el => <FriendsOnlineItem id={el.id}
                                                                   name={el.name}
                                                                   avatar={el.avatar}
                                                                   status={el.status}/>

@@ -19,7 +19,7 @@ const App = (props) => {
                 <Header/>
             </div>
             <div className="main-wrapper">
-                <Navbar state={props.state.userList}/>
+                <Navbar />
                 <div className="content">
                     <Route path='/profile' render={() => <Profile store={props.store} />}/>
                     <Route path='/friends' render={() => <Friends/>}/>
