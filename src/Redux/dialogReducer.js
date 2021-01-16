@@ -57,13 +57,13 @@ const dialogReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageActionCreator = () => {
+export const addMessageAC = () => {
     return {
         type: ADD_MESSAGE
     }
 }
 
-export const onMessageChangeActionCreator = (text) => {
+export const onMessageChangeAC = (text) => {
     return {
         type: UPDATE_NEW_MESSAGE_TEXT,
         newText: text
