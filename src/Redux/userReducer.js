@@ -12,7 +12,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
 let initialState = {
-    userList: [
+    users: [
         {
             id: 1,
             name: 'Dima',
@@ -22,7 +22,7 @@ let initialState = {
             online: 'online',
             followed: false
         },
-        /*{
+        {
             id: 2,
             name: 'Andrey',
             status: 'This is my status',
@@ -84,8 +84,9 @@ let initialState = {
             avatar: icon_f_04,
             online: 'offline',
             folowed: true
-        }*/
-    ]
+        }
+    ],
+    userList: []
 }
 
 const userReducer = (state = initialState, action) => {
@@ -111,11 +112,10 @@ const userReducer = (state = initialState, action) => {
                     return user
                 })
             }
-        case SET_USERS:
-return {
-    ...state,
-    userList: [ ...state.userList, ...action.userList ]
-}
+
+        case SET_USERS: {
+            return { ...state, userList: [...state.userList, ...action.users] }
+        }
 
         default:
             return state;
