@@ -10,6 +10,8 @@ import icon_f_04 from "./img/icon_f_04.png";
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT';
 
 let initialState = {
     users: [
@@ -86,7 +88,10 @@ let initialState = {
             folowed: true
         }
     ],
-    userList: []
+    userList: [],
+    pageSize: 10,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const userReducer = (state = initialState, action) => {
@@ -114,7 +119,15 @@ const userReducer = (state = initialState, action) => {
             }
 
         case SET_USERS: {
-            return { ...state, userList: [...state.userList, ...action.users] }
+            return {...state, userList: action.users}
+        }
+
+        case SET_CURRENT_PAGE: {
+            return {...state, currentPage: action.currentPage}
+        }
+
+        case SET_TOTAL_USER_COUNT: {
+            return {...state, totalUsersCount: action.totalCount}
         }
 
         default:
@@ -135,6 +148,18 @@ export const unfollowAC = (userId) => {
 export const setUsersAC = (users) => {
     return {
         type: SET_USERS, users
+    }
+};
+
+export const setCurrentPageAC = (currentPage) => {
+    return {
+        type: SET_CURRENT_PAGE, currentPage
+    }
+};
+
+export const setTotalUsersCountAC = (totalCount) => {
+    return {
+        type: SET_TOTAL_USER_COUNT, totalCount
     }
 };
 
