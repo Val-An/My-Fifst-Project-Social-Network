@@ -4,8 +4,7 @@ import userLogo from "../../img/user_logo.png"
 
 
 const Friends = (props) => {
-
-    let pagesCount = Math.ceil( props.userList.totalUsersCount / props.userList.pageSize );
+    let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
 
     let pages = [];
     for(let i=1; i <= pagesCount; i++){
@@ -15,9 +14,9 @@ const Friends = (props) => {
     return (
         <div>
             <div className={style.usersPages}>
-                {pages.map(p => {
+                {pages.map( (p) => {
                     return (
-                        <span className={props.userList.currentPage === p && style.selectedPage}
+                        <span className={props.currentPage === p && style.selectedPage}
                               onClick={() => {
                                   props.onPageChanget(p)
                               }}>{p} </span>
@@ -25,7 +24,7 @@ const Friends = (props) => {
                 })}
             </div>
             {
-                props.userList.userList.map(user => <div key={user.id}>
+                props.userList.map(user => <div key={user.id}>
                     <span>
                         <div><img className={style.avatarImg}
                                   src={user.photos.small != null ? user.photos.small : userLogo} alt=""/></div>
