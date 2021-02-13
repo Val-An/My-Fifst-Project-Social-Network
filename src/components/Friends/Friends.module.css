@@ -9,4 +9,13 @@
 .usersPages {
     color: blue;
     margin: 3px;
+    cursor: pointer;
+}
+
+.pageNav button {
+    margin: 20px;
+}
+
+.users {
+    margin: 10px;
 }

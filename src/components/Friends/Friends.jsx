@@ -11,20 +11,21 @@ const Friends = (props) => {
         pages.push(i);
     }
 
+    const pageNav = () => {
+        return  (
+            <div className={style.pageNav}>
+                <button onClick={() => {props.onPageChanget(props.currentPage - 1)}}>Prev</button>
+                {props.currentPage}
+                <button onClick={() => {props.onPageChanget(props.currentPage + 1)}}>Next</button>
+            </div>
+        )
+    }
+
     return (
         <div>
-            <div className={style.usersPages}>
-                {pages.map( (p) => {
-                    return (
-                        <span className={props.currentPage === p && style.selectedPage}
-                              onClick={() => {
-                                  props.onPageChanget(p)
-                              }}>{p} </span>
-                    )
-                })}
-            </div>
+            {pageNav (props.currentPage)}
             {
-                props.userList.map(user => <div key={user.id}>
+                props.userList.map(user => <div className={style.users} key={user.id}>
                     <span>
                         <div><img className={style.avatarImg}
                                   src={user.photos.small != null ? user.photos.small : userLogo} alt=""/></div>
@@ -50,6 +51,17 @@ const Friends = (props) => {
                     </span>
                 </div>)
             }
+            {pageNav (props.currentPage)}
+            <div className={style.usersPages}>
+                {pages.map( (p) => {
+                    return (
+                        <span className={props.currentPage === p && style.selectedPage}
+                              onClick={() => {
+                                  props.onPageChanget(p)
+                              }}>{p} </span>
+                    )
+                })}
+            </div>
         </div>
     )
 }
