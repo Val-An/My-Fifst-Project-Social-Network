@@ -51,6 +51,7 @@ class FriendsAPIComponent extends React.Component {
                          follow={this.props.follow}
                          pageNav={this.props.pageNav}
                          setCurrentPage={this.props.setCurrentPage}/>
+
             </>
         )
     }

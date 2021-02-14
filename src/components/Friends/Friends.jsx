@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Friends.module.css';
 import userLogo from "../../img/user_logo.png"
+import {NavLink} from "react-router-dom";
 
 
 const Friends = (props) => {
@@ -27,8 +28,12 @@ const Friends = (props) => {
             {
                 props.userList.map(user => <div className={style.users} key={user.id}>
                     <span>
-                        <div><img className={style.avatarImg}
-                                  src={user.photos.small != null ? user.photos.small : userLogo} alt=""/></div>
+                        <div>
+                            <NavLink to={'/profile/' + user.id}>
+                                <img className={style.avatarImg}
+                                     src={user.photos.small != null ? user.photos.small : userLogo} alt=""/>
+                            </NavLink>
+                        </div>
                         <div>
                             {user.followed
                                 ? <button onClick={() => {

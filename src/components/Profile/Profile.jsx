@@ -12,7 +12,7 @@ const Profile = (props) => {
                      alt=""/>
             </div>
             <div className={style.profileMain}>
-                <ProfileInfo/>
+                <ProfileInfo profile={props.profile}/>
                 <MyPostsContainer store={props.store}/>
             </div>
         </div>
