@@ -2,6 +2,16 @@
 
 }
 
+.profileInfo a {
+    text-decoration: none;
+}
+
 .profileAvatar {
-    margin-right: auto;
+    display: inline-block;
+    /*justify-content: flex-end;*/
+    float: right;
+}
+
+.profileAvatarImg {
+
 }
