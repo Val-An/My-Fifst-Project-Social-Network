@@ -11,14 +11,15 @@ import {
 import Friends from "./Friends";
 import * as axios from "axios";
 import Preloader from "../Common/Preloader/Preloader";
-import style from "./Friends.module.css";
 
 
 class FriendsAPIComponent extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`,
+            {withCredentials: true}
+            )
             .then(response => {
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(response.data.items);
@@ -29,7 +30,8 @@ class FriendsAPIComponent extends React.Component {
     onPageChanget = (p) => {
         this.props.setCurrentPage(p);
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${p}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${p}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(response.data.items);

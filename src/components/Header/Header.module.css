@@ -4,7 +4,7 @@
     margin-bottom: 10px;
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 70px 1fr;
+    grid-template-columns: 70px 1fr 100px;
     grid-gap: 10px;
 }
 
@@ -24,6 +24,15 @@ header img {
     line-height: 60px;
     font-size: 36px;
     color: #0048BA;
+}
+
+.loginBlock {
+    text-align: center;
+    line-height: 60px;
+}
+
+.loginBlock a {
+    text-decoration: none;
 }
 
 

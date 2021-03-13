@@ -18,7 +18,8 @@ const ProfileInfo = (props) => {
             </div>
             {/*about*/}
             <div>
-                <p><strong>About Me:</strong> {props.profile.aboutMe}</p>
+                {props.profile.aboutMe != null ?
+                <p><strong>About Me:</strong> {props.profile.aboutMe}</p> : ''}
             </div>
             {/*social*/}
             <div>

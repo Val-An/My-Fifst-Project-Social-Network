@@ -2,29 +2,36 @@ import React from 'react';
 import style from './Friends.module.css';
 import userLogo from "../../img/user_logo.png"
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 
 const Friends = (props) => {
-    let pagesCount = Math.ceil( props.totalUsersCount / props.pageSize );
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     let pages = [];
-    for(let i=1; i <= pagesCount; i++){
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
 
     const pageNav = () => {
-        return  (
+        return (
             <div className={style.pageNav}>
-                <button onClick={() => {props.onPageChanget(props.currentPage - 1)}}>Prev</button>
+                <button onClick={() => {
+                    props.onPageChanget(props.currentPage - 1)
+                }}>Prev
+                </button>
                 {props.currentPage}
-                <button onClick={() => {props.onPageChanget(props.currentPage + 1)}}>Next</button>
+                <button onClick={() => {
+                    props.onPageChanget(props.currentPage + 1)
+                }}>Next
+                </button>
             </div>
         )
     }
 
     return (
         <div>
-            {pageNav (props.currentPage)}
+            {pageNav(props.currentPage)}
             {
                 props.userList.map(user => <div className={style.users} key={user.id}>
                     <span>
@@ -37,10 +44,31 @@ const Friends = (props) => {
                         <div>
                             {user.followed
                                 ? <button onClick={() => {
-                                    props.unfollow(user.id)
+                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                        {withCredentials: true,
+                                        headers: {
+                                            'API-KEY': 'f2505eb7-09e9-4414-946c-a8ac246dd9fb'
+                                        }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0){
+                                                props.unfollow(user.id)
+                                            }
+                                        });
                                 }}>Unfollow</button>
                                 : <button onClick={() => {
-                                    props.follow(user.id)
+                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                        {},
+                                        {withCredentials: true,
+                                            headers: {
+                                                'API-KEY': 'f2505eb7-09e9-4414-946c-a8ac246dd9fb'
+                                            }
+                                        })
+                                        .then(response => {
+                                            if (response.data.resultCode === 0){
+                                                props.follow(user.id)
+                                            }
+                                        });
                                 }}>Follow</button>}
                         </div>
                     </span>
@@ -56,9 +84,9 @@ const Friends = (props) => {
                     </span>
                 </div>)
             }
-            {pageNav (props.currentPage)}
+            {pageNav(props.currentPage)}
             <div className={style.usersPages}>
-                {pages.map( (p) => {
+                {pages.map((p) => {
                     return (
                         <span className={props.currentPage === p && style.selectedPage}
                               onClick={() => {
