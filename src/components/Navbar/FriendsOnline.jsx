@@ -4,8 +4,6 @@ import style from "./FriendsOnline.module.css";
 const FriendsOnline = (props) => {
 
     const FriendsOnlineItem = (props) => {
-
-        // if(props.status == 'online'){
         return (
             <div className={style.friendsOnlineItem}>
                 <div>
@@ -17,7 +15,6 @@ const FriendsOnline = (props) => {
 
             </div>
         )
-        // }
     }
 
     const friendOnline = props.userList.userList.map(el => <FriendsOnlineItem id={el.id}
