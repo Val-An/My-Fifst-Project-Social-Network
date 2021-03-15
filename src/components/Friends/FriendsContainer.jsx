@@ -1,37 +1,26 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    follow,
+    followThunk,
+    getUsersThunk,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers,
-    toggleIsFetching,
-    unfollow
+    toggleFollowingProgress,
+    unfollowThunk
 } from "../../Redux/userReducer";
 import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
-import {getUsers} from "../../api/api";
 
 
 class FriendsAPIComponent extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        getUsers(this.props.pageSize, this.props.currentPage).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount)
-            });
+        this.props.getUsersThunk(this.props.pageSize, this.props.currentPage);
     }
 
     onPageChanget = (p) => {
+        this.props.getUsersThunk(this.props.pageSize, p);
         this.props.setCurrentPage(p);
-        this.props.toggleIsFetching(true);
-        getUsers(this.props.pageSize, p).then(data => {
-                this.props.toggleIsFetching(false);
-                this.props.setUsers(data.items);
-                this.props.setTotalUsersCount(data.totalCount)
-            });
     }
 
 
@@ -44,10 +33,12 @@ class FriendsAPIComponent extends React.Component {
                          currentPage={this.props.currentPage}
                          pageSize={this.props.pageSize}
                          totalUsersCount={this.props.totalUsersCount}
-                         unfollow={this.props.unfollow}
-                         follow={this.props.follow}
+                         unfollowThunk={this.props.unfollowThunk}
+                         followThunk={this.props.followThunk}
                          pageNav={this.props.pageNav}
-                         setCurrentPage={this.props.setCurrentPage}/>
+                         setCurrentPage={this.props.setCurrentPage}
+                         followingInProgress={this.props.followingInProgress}
+                         toggleFollowingProgress={this.props.toggleFollowingProgress}/>
 
             </>
         )
@@ -60,17 +51,18 @@ let mapStateToProps = (state) => {
         pageSize: state.userList.pageSize,
         totalUsersCount: state.userList.totalUsersCount,
         currentPage: state.userList.currentPage,
-        isFetching: state.userList.isFetching
+        isFetching: state.userList.isFetching,
+        followingInProgress: state.userList.followingInProgress
     }
 }
 
 const FriendsContainer = connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
+    followThunk,
+    unfollowThunk,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching
+    toggleFollowingProgress,
+    getUsersThunk
 })(FriendsAPIComponent)
 
 export default FriendsContainer;

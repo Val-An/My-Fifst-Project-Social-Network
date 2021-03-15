@@ -2,7 +2,6 @@ import React from 'react';
 import style from './Friends.module.css';
 import userLogo from "../../img/user_logo.png"
 import {NavLink} from "react-router-dom";
-import {followUser, unfollowUser} from "../../api/api";
 
 
 const Friends = (props) => {
@@ -43,19 +42,11 @@ const Friends = (props) => {
                         </div>
                         <div>
                             {user.followed
-                                ? <button onClick={() => {
-                                    unfollowUser(user.id).then(data => {
-                                            if (data.resultCode === 0){
-                                                props.unfollow(user.id)
-                                            }
-                                        });
+                                ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                    props.unfollowThunk(user.id);
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
-                                    followUser(user.id).then(data => {
-                                            if (data.resultCode === 0){
-                                                props.follow(user.id)
-                                            }
-                                        });
+                                : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                    props.followThunk(user.id);
                                 }}>Follow</button>}
                         </div>
                     </span>
