@@ -6,7 +6,7 @@ import icon_f_01 from "./img/icon_f_01.png";
 import icon_f_02 from "./img/icon_f_02.png";
 import icon_f_03 from "./img/icon_f_03.png";
 import icon_f_04 from "./img/icon_f_04.png";
-import {followUser, getUsers, unfollowUser} from "../api/api";
+import {userAPI} from "../api/api";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -164,7 +164,7 @@ export const toggleFollowingProgress = (isFetching, userId) => ({type: TOGGLE_IS
 export const getUsersThunk = (pageSize, currentPage) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        getUsers(pageSize, currentPage).then(data => {
+        userAPI.getUsers(pageSize, currentPage).then(data => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));
@@ -175,7 +175,7 @@ export const getUsersThunk = (pageSize, currentPage) => {
 export const followThunk = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
-        followUser(userId).then(data => {
+        userAPI.followUser(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(followSuccess(userId))
             }
@@ -187,7 +187,7 @@ export const followThunk = (userId) => {
 export const unfollowThunk = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
-        unfollowUser(userId).then(data => {
+        userAPI.unfollowUser(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId))
             }
