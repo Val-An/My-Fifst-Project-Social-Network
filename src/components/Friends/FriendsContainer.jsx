@@ -10,6 +10,8 @@ import {
 } from "../../Redux/userReducer";
 import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class FriendsAPIComponent extends React.Component {
@@ -56,13 +58,25 @@ let mapStateToProps = (state) => {
     }
 }
 
-const FriendsContainer = connect(mapStateToProps, {
-    followThunk,
-    unfollowThunk,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleFollowingProgress,
-    getUsersThunk
-})(FriendsAPIComponent)
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        followThunk,
+        unfollowThunk,
+        setCurrentPage,
+        setTotalUsersCount,
+        toggleFollowingProgress,
+        getUsersThunk
+    })
+)(FriendsAPIComponent)
 
-export default FriendsContainer;
+// const FriendsContainer = connect(mapStateToProps, {
+//     followThunk,
+//     unfollowThunk,
+//     setCurrentPage,
+//     setTotalUsersCount,
+//     toggleFollowingProgress,
+//     getUsersThunk
+// })(FriendsAPIComponent)
+//
+// export default FriendsContainer;
