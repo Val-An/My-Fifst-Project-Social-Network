@@ -17,7 +17,7 @@ const ProfileInfo = (props) => {
                     <img src={noAvatar} className={style.profileAvatarImg} alt=""/>}
             </div>
             {/*status*/}
-            <ProfileStatus status={"Hello my friends"}/>
+            <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk}/>
             {/*fullName*/}
             <div>
                 <p><strong>Full Name:</strong> {props.profile.fullName}</p>

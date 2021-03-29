@@ -13,9 +13,9 @@ export const userAPI = {
         return instanse.get(`users?count=${pageSize}&page=${currentPage}`)
             .then (response => response.data)
     },
-    profile(userId) {
-        return instanse.get(`profile/${userId}`)
-            .then (response => response.data)
+    getProfile(userId) {
+        console.warn("Obsolete method. Please use profileAPI object.");
+        return profileAPI.getProfile(userId);
     },
     unfollowUser (userId) {
         return instanse.delete(`follow/${userId}`)
@@ -23,6 +23,21 @@ export const userAPI = {
     },
     followUser(userId) {
         return instanse.post(`follow/${userId}`)
+            .then (response => response.data)
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instanse.get(`profile/${userId}`)
+            .then (response => response.data)
+    },
+    getStatus(userId) {
+        return instanse.get(`profile/status/${userId}`)
+            .then (response => response.data)
+    },
+    updateStatus(status) {
+        return instanse.put(`profile/status/`, {status: status})
             .then (response => response.data)
     }
 }
