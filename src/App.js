@@ -22,7 +22,7 @@ const App = (props) => {
             <div className="main-wrapper">
                 <Navbar />
                 <div className="content">
-                    <Redirect from='/' to='/profile'/>
+                    {/*<Redirect from='/' to='/profile'/>*/}
                     <Route path='/profile/:userId?' render={() => <ProfileContainer store={props.store} />}/>
                     <Route path='/friends' render={() => <FriendsContainer/>}/>
                     <Route path='/dialogs' render={() => <DialogsContainer />}/>
