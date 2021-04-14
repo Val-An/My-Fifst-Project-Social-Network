@@ -8,7 +8,6 @@ import icon_f_03 from "./img/icon_f_03.png";
 import icon_f_04 from "./img/icon_f_04.png";
 
 const ADD_MESSAGE = 'ADD_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
 
 let initialState = {
     dialogData: [
@@ -28,7 +27,6 @@ let initialState = {
         {id: 4, message: 'Yabadabadoo'},
         {id: 5, message: 'YoYoYo'}
     ],
-    newMessageText: 'dialogState'
 }
 
 const dialogReducer = (state = initialState, action) => {
@@ -37,19 +35,12 @@ const dialogReducer = (state = initialState, action) => {
             let newId = state.messagesData.length + 1;
             let newMessage = {
                 id: newId,
-                message: state.newMessageText,
+                message: action.newMessageText,
                 like: 0
             };
             return {
                 ...state,
                 messagesData: [...state.messagesData, newMessage],
-                newMessageText:  ''
-            };
-
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newText
             };
 
         default:
@@ -57,16 +48,10 @@ const dialogReducer = (state = initialState, action) => {
     }
 }
 
-export const addMessageAC = () => {
+export const addMessageAC = (newMessageText) => {
     return {
-        type: ADD_MESSAGE
-    }
-}
-
-export const onMessageChangeAC = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newText: text
+        type: ADD_MESSAGE,
+        newMessageText
     }
 }
 

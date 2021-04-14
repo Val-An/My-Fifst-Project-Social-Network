@@ -1,7 +1,18 @@
 import React from 'react';
 import style from './Dialogs.module.css';
 import {NavLink} from "react-router-dom";
+import {Field, reduxForm} from "redux-form";
 
+const AddMessageForm = (props) => {
+    return <form onSubmit={props.handleSubmit} className={style.messages}>
+
+        <Field component={"textarea"}
+               name={"newMessageText"} placeholder={"Enter your message"}/>
+        <button >Add Message</button>
+    </form>
+}
+
+const AddMessageReduxForm = reduxForm({form: "dialogAddMessageForm"})(AddMessageForm)
 
 const Dialogs = (props) => {
     const DialogItem = (props) => {
@@ -34,26 +45,20 @@ const Dialogs = (props) => {
                                                                            message={message.message}/>)
 
 
-    let addMessage = () => {
-        props.addMessage();
+    let addMessage = (value) => {
+        props.addMessage(value.newMessageText);
     }
-
-    let onMessageChange = (e) => {
-        let text = e.target.value;
-        props.onMessageChange(text);
-    }
-
 
     return (
         <div className={style.dialogs}>
             <div className={style.dialog}>
                 {dialog}
             </div>
-            <div className={style.messages}>
+            <div>
                 {messages}
-                <textarea onChange={onMessageChange} value={props.dialogPage.newMessageText} cols="30" rows="3"/>
-                <button onClick={addMessage}>Add Message</button>
+                <AddMessageReduxForm onSubmit={addMessage} />
             </div>
+
         </div>
     );
 }
