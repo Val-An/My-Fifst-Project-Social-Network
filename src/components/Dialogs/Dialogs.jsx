@@ -2,11 +2,17 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import {NavLink} from "react-router-dom";
 import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../Common/FormsControls/FormsControls";
+import {maxLengthCreator, minLengthCreator, required} from "../../utils/validators/validators";
+
+const maxLength30 = maxLengthCreator(30)
+const minLength2 = minLengthCreator(2)
 
 const AddMessageForm = (props) => {
     return <form onSubmit={props.handleSubmit} className={style.messages}>
 
-        <Field component={"textarea"}
+        <Field component={Textarea}
+               validate={[required, maxLength30, minLength2]}
                name={"newMessageText"} placeholder={"Enter your message"}/>
         <button >Add Message</button>
     </form>
