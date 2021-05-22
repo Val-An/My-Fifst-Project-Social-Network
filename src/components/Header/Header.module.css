@@ -27,12 +27,27 @@ header img {
 }
 
 .loginBlock {
-    text-align: center;
-    line-height: 60px;
+    display: flex;
+    /*text-align: center;*/
+    /*line-height: 60px;*/
 }
 
 .loginBlock a {
     text-decoration: none;
+}
+
+.loginLogout {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    /*width: 200px;*/
+}
+
+.login {
+    display: flex;
+    align-items: center;
 }
 
 

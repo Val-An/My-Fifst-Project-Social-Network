@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const instanse = axios.create ({
+const instance = axios.create ({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
@@ -10,7 +10,7 @@ const instanse = axios.create ({
 
 export const userAPI = {
     getUsers(pageSize = 10, currentPage = 1) {
-        return instanse.get(`users?count=${pageSize}&page=${currentPage}`)
+        return instance.get(`users?count=${pageSize}&page=${currentPage}`)
             .then (response => response.data)
     },
     getProfile(userId) {
@@ -18,34 +18,40 @@ export const userAPI = {
         return profileAPI.getProfile(userId);
     },
     unfollowUser (userId) {
-        return instanse.delete(`follow/${userId}`)
+        return instance.delete(`follow/${userId}`)
             .then (response => response.data)
     },
     followUser(userId) {
-        return instanse.post(`follow/${userId}`)
+        return instance.post(`follow/${userId}`)
             .then (response => response.data)
     }
 }
 
 export const profileAPI = {
     getProfile(userId) {
-        return instanse.get(`profile/${userId}`)
+        return instance.get(`profile/${userId}`)
             .then (response => response.data)
     },
     getStatus(userId) {
-        return instanse.get(`profile/status/${userId}`)
+        return instance.get(`profile/status/${userId}`)
             .then (response => response.data)
     },
     updateStatus(status) {
-        return instanse.put(`profile/status/`, {status: status})
+        return instance.put(`profile/status/`, {status: status})
             .then (response => response.data)
     }
 }
 
 export const authAPI = {
     me() {
-        return instanse.get(`auth/me`)
-            .then (response => response.data)
+        return instance.get(`auth/me`)
+            .then (response => response.data);
+    },
+    login(email, password, rememberMe = false) {
+       return instance.post('auth/login', {email, password, rememberMe});
+    },
+    logout() {
+        return instance.delete('auth/login');
     }
 }
 
