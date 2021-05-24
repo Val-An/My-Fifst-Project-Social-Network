@@ -12,6 +12,14 @@ import Friends from "./Friends";
 import Preloader from "../Common/Preloader/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../Redux/userSelectors";
 
 
 class FriendsAPIComponent extends React.Component {
@@ -47,7 +55,7 @@ class FriendsAPIComponent extends React.Component {
     }
 }
 
-let mapStateToProps = (state) => {
+/*let mapStateToProps = (state) => {
     return {
         userList: state.userList.userList,
         pageSize: state.userList.pageSize,
@@ -55,6 +63,17 @@ let mapStateToProps = (state) => {
         currentPage: state.userList.currentPage,
         isFetching: state.userList.isFetching,
         followingInProgress: state.userList.followingInProgress
+    }
+}*/
+
+let mapStateToProps = (state) => {
+    return {
+        userList: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
@@ -69,14 +88,3 @@ export default compose(
         getUsersThunk
     })
 )(FriendsAPIComponent)
-
-// const FriendsContainer = connect(mapStateToProps, {
-//     followThunk,
-//     unfollowThunk,
-//     setCurrentPage,
-//     setTotalUsersCount,
-//     toggleFollowingProgress,
-//     getUsersThunk
-// })(FriendsAPIComponent)
-//
-// export default FriendsContainer;
