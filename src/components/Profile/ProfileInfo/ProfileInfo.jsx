@@ -3,8 +3,20 @@ import style from './ProfileInfo.module.css';
 import Preloader from "../../Common/Preloader/Preloader";
 import noAvatar from "../../../img/noAvatar.png";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+
+
 
 const ProfileInfo = (props) => {
+
+    /*const social = (link, text, props) => {
+        debugger
+        return  (
+            props.profile.contacts.link != null ?
+                <a href={props.profile.contacts.link}><strong>text</strong></a> : ''
+        )
+    }*/
+
     if (!props.profile) {
         return <Preloader/>
     }
@@ -17,7 +29,7 @@ const ProfileInfo = (props) => {
                     <img src={noAvatar} className={style.profileAvatarImg} alt=""/>}
             </div>
             {/*status*/}
-            <ProfileStatus status={props.status} updateStatusThunk={props.updateStatusThunk}/>
+            <ProfileStatusWithHooks status={props.status} updateStatusThunk={props.updateStatusThunk}/>
             {/*fullName*/}
             <div>
                 <p><strong>Full Name:</strong> {props.profile.fullName}</p>
@@ -29,10 +41,12 @@ const ProfileInfo = (props) => {
             </div>
             {/*social*/}
             <div>
+                {/*{social("facebook", "Facebook", props)}*/}
                 {props.profile.contacts.facebook != null ?
                     <a href={props.profile.contacts.facebook}><strong>Facebook</strong></a> : ''}
             </div>
             <div>
+                {/*{social("website", "Website", props)}*/}
                 {props.profile.contacts.website != null ?
                     <a href={props.profile.contacts.website}><strong>Website</strong></a> : ''}
             </div>

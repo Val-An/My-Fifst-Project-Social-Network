@@ -55,16 +55,7 @@ class FriendsAPIComponent extends React.Component {
     }
 }
 
-/*let mapStateToProps = (state) => {
-    return {
-        userList: state.userList.userList,
-        pageSize: state.userList.pageSize,
-        totalUsersCount: state.userList.totalUsersCount,
-        currentPage: state.userList.currentPage,
-        isFetching: state.userList.isFetching,
-        followingInProgress: state.userList.followingInProgress
-    }
-}*/
+
 
 let mapStateToProps = (state) => {
     return {
