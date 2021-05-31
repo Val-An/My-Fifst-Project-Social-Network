@@ -64,6 +64,7 @@ export const updateStatusThunk = (status) => {
     return (dispatch) => {
         profileAPI.updateStatus(status).then(data => {
             if (data.data.resultCode === 0) {
+                debugger
                 dispatch(setUserStatus(status));
             }
         });
