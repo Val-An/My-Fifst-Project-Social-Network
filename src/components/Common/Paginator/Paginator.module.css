@@ -1,0 +1,10 @@
+.selectedPage {
+    color: limegreen;
+    font-weight: bold;
+}
+
+.usersPages {
+    color: blue;
+    margin: 3px;
+    cursor: pointer;
+}

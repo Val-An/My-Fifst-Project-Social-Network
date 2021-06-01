@@ -2,37 +2,21 @@ import React from 'react';
 import style from './Friends.module.css';
 import userLogo from "../../img/user_logo.png"
 import {NavLink} from "react-router-dom";
+import Paginator from "../Common/Paginator/Paginator";
+import PageNav from "../Common/Paginator/PageNavigator";
 
 
-const Friends = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+const Friends = ({currentPage, onPageChanget, totalUsersCount, pageSize, userList, ...props}) => {
 
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
-    const pageNav = () => {
-        return (
-            <div className={style.pageNav}>
-                <button onClick={() => {
-                    props.onPageChanget(props.currentPage - 1)
-                }}>Prev
-                </button>
-                {props.currentPage}
-                <button onClick={() => {
-                    props.onPageChanget(props.currentPage + 1)
-                }}>Next
-                </button>
-            </div>
-        )
-    }
+    const pageNav = <PageNav currentPage={currentPage} onPageChanget={onPageChanget}/>
 
     return (
         <div>
-            {pageNav(props.currentPage)}
+            <div>
+                {pageNav}
+            </div>
             {
-                props.userList.map(user => <div className={style.users} key={user.id}>
+                userList.map(user => <div className={style.users} key={user.id}>
                     <span>
                         <div>
                             <NavLink to={'/profile/' + user.id}>
@@ -42,10 +26,12 @@ const Friends = (props) => {
                         </div>
                         <div>
                             {user.followed
-                                ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                ?
+                                <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
                                     props.unfollowThunk(user.id);
                                 }}>Unfollow</button>
-                                : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                :
+                                <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
                                     props.followThunk(user.id);
                                 }}>Follow</button>}
                         </div>
@@ -62,17 +48,13 @@ const Friends = (props) => {
                     </span>
                 </div>)
             }
-            {pageNav(props.currentPage)}
-            <div className={style.usersPages}>
-                {pages.map((p) => {
-                    return (
-                        <span className={props.currentPage === p && style.selectedPage}
-                              onClick={() => {
-                                  props.onPageChanget(p)
-                              }}>{p} </span>
-                    )
-                })}
+            <div>
+                {pageNav}
             </div>
+            <Paginator currentPage={currentPage}
+                       onPageChanget={onPageChanget}
+                       totalUsersCount={totalUsersCount}
+                       pageSize={pageSize}/>
         </div>
     )
 }
