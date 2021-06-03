@@ -2,16 +2,16 @@ import React from 'react';
 import style from './PageNavigator.module.css';
 
 
-const PageNav = (props) => {
+const PageNav = ({onPageChanget, currentPage}) => {
     return (
         <div className={style.pageNav}>
             <button onClick={() => {
-                props.onPageChanget(props.currentPage - 1)
+                onPageChanget(currentPage - 1)
             }}>Prev
             </button>
-            {props.currentPage}
+            {currentPage}
             <button onClick={() => {
-                props.onPageChanget(props.currentPage + 1)
+                onPageChanget(currentPage + 1)
             }}>Next
             </button>
         </div>

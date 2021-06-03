@@ -8,7 +8,7 @@ import {
     toggleFollowingProgress,
     unfollowThunk
 } from "../../Redux/userReducer";
-import Friends from "./Friends";
+import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -24,12 +24,16 @@ import {
 
 class FriendsAPIComponent extends React.Component {
 
+
+
     componentDidMount() {
-        this.props.getUsersThunk(this.props.pageSize, this.props.currentPage);
+        const {pageSize, currentPage} = this.props
+        this.props.getUsersThunk(pageSize, currentPage);
     }
 
-    onPageChanget = (p) => {
-        this.props.getUsersThunk(this.props.pageSize, p);
+    onPageChanged = (p) => {
+        const {pageSize} = this.props
+        this.props.getUsersThunk(pageSize, p);
         this.props.setCurrentPage(p);
     }
 
@@ -38,24 +42,22 @@ class FriendsAPIComponent extends React.Component {
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}
-                <Friends userList={this.props.userList}
-                         onPageChanget={this.onPageChanget}
-                         currentPage={this.props.currentPage}
-                         pageSize={this.props.pageSize}
-                         totalUsersCount={this.props.totalUsersCount}
-                         unfollowThunk={this.props.unfollowThunk}
-                         followThunk={this.props.followThunk}
-                         pageNav={this.props.pageNav}
-                         setCurrentPage={this.props.setCurrentPage}
-                         followingInProgress={this.props.followingInProgress}
-                         toggleFollowingProgress={this.props.toggleFollowingProgress}/>
+                <Users userList={this.props.userList}
+                       onPageChanged={this.onPageChanged}
+                       currentPage={this.props.currentPage}
+                       pageSize={this.props.pageSize}
+                       totalItemsCount={this.props.totalUsersCount}
+                       unfollowThunk={this.props.unfollowThunk}
+                       followThunk={this.props.followThunk}
+                       pageNav={this.props.pageNav}
+                       setCurrentPage={this.props.setCurrentPage}
+                       followingInProgress={this.props.followingInProgress}
+                       toggleFollowingProgress={this.props.toggleFollowingProgress}/>
 
             </>
         )
     }
 }
-
-
 
 let mapStateToProps = (state) => {
     return {

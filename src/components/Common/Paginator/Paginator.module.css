@@ -3,8 +3,17 @@
     font-weight: bold;
 }
 
-.usersPages {
-    color: blue;
+.paginator {
+    color: black;
     margin: 3px;
     cursor: pointer;
+    display: flex;
+    /*flex-wrap: wrap*/
+    justify-content: center
+}
+
+.pages {
+    display: flex;
+    /*border: 1px solid red;*/
+    padding: 2px;
 }
