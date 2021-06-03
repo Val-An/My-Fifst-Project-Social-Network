@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/My-Fifst-Project-SocialNetwork/static/css/main.22fa5d68.chunk.css",
+    "main.js": "/My-Fifst-Project-SocialNetwork/static/js/main.f52bb504.chunk.js",
+    "main.js.map": "/My-Fifst-Project-SocialNetwork/static/js/main.f52bb504.chunk.js.map",
+    "runtime-main.js": "/My-Fifst-Project-SocialNetwork/static/js/runtime-main.b7034d92.js",
+    "runtime-main.js.map": "/My-Fifst-Project-SocialNetwork/static/js/runtime-main.b7034d92.js.map",
+    "static/js/2.4b66a87e.chunk.js": "/My-Fifst-Project-SocialNetwork/static/js/2.4b66a87e.chunk.js",
+    "static/js/2.4b66a87e.chunk.js.map": "/My-Fifst-Project-SocialNetwork/static/js/2.4b66a87e.chunk.js.map",
+    "static/css/3.c937bc3a.chunk.css": "/My-Fifst-Project-SocialNetwork/static/css/3.c937bc3a.chunk.css",
+    "static/js/3.49fc7201.chunk.js": "/My-Fifst-Project-SocialNetwork/static/js/3.49fc7201.chunk.js",
+    "static/js/3.49fc7201.chunk.js.map": "/My-Fifst-Project-SocialNetwork/static/js/3.49fc7201.chunk.js.map",
+    "index.html": "/My-Fifst-Project-SocialNetwork/index.html",
+    "precache-manifest.766ac938817cd29e5475a82e9a08f08a.js": "/My-Fifst-Project-SocialNetwork/precache-manifest.766ac938817cd29e5475a82e9a08f08a.js",
+    "service-worker.js": "/My-Fifst-Project-SocialNetwork/service-worker.js",
+    "static/css/3.c937bc3a.chunk.css.map": "/My-Fifst-Project-SocialNetwork/static/css/3.c937bc3a.chunk.css.map",
+    "static/css/main.22fa5d68.chunk.css.map": "/My-Fifst-Project-SocialNetwork/static/css/main.22fa5d68.chunk.css.map",
+    "static/js/2.4b66a87e.chunk.js.LICENSE.txt": "/My-Fifst-Project-SocialNetwork/static/js/2.4b66a87e.chunk.js.LICENSE.txt",
+    "static/media/preload.svg": "/My-Fifst-Project-SocialNetwork/static/media/preload.892092cf.svg",
+    "static/media/user-logo.png": "/My-Fifst-Project-SocialNetwork/static/media/user-logo.6efb8305.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b7034d92.js",
+    "static/js/2.4b66a87e.chunk.js",
+    "static/css/main.22fa5d68.chunk.css",
+    "static/js/main.f52bb504.chunk.js"
+  ]
+}
