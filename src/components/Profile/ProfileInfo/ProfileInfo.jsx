@@ -6,18 +6,29 @@ import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
 
-const ProfileInfo = ({profile, status, updateStatusThunk, ...props}) => {
+const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, ...props}) => {
 
     if (!profile) {
         return <Preloader/>
     }
+
+    const onMainPhotoSelected = (e) => {
+        debugger
+        if (e.target.files.length){
+           savePhoto (e.target.files[0])
+        }
+    }
+
     return (
         <div className={style.profileInfo}>
             {/*avatar*/}
             <div className={style.profileAvatar}>
-                {profile.photos.large != null ?
-                <img src={profile.photos.large} className={style.profileAvatarImg} alt=""/> :
-                    <img src={noAvatar} className={style.profileAvatarImg} alt=""/>}
+                {profile.photos.large != null
+                    ? <img src={profile.photos.large} className={style.profileAvatarImg} alt=""/>
+                    : <img src={noAvatar} className={style.profileAvatarImg} alt=""/>}
+                <div>
+                    {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                </div>
             </div>
             {/*status*/}
             <ProfileStatusWithHooks status={status} updateStatusThunk={updateStatusThunk}/>
