@@ -11,7 +11,6 @@ import {
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {
     getCurrentPage,
     getFollowingInProgress,
@@ -71,7 +70,6 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    // withAuthRedirect,
     connect(mapStateToProps, {
         followThunk,
         unfollowThunk,

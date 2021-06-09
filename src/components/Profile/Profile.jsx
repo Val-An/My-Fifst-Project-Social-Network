@@ -2,7 +2,6 @@ import React from 'react';
 import style from './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
-import {savePhoto} from "../../Redux/profileReducer";
 
 const Profile = (props) => {
     return (
@@ -17,6 +16,7 @@ const Profile = (props) => {
                              isOwner={props.isOwner}
                              profile={props.profile}
                              status={props.status}
+                             saveProfile={props.saveProfile}
                              updateStatusThunk={props.updateStatusThunk}/>
                 <MyPostsContainer store={props.store}/>
             </div>

@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import style from './ProfileInfo.module.css';
 import Preloader from "../../Common/Preloader/Preloader";
 import noAvatar from "../../../img/noAvatar.png";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileDataForm from "./ProfileDataForm";
 
 
+const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, saveProfile, ...props}) => {
 
-const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, ...props}) => {
+    const [editMode, setEditMode] = useState(false)
 
     if (!profile) {
         return <Preloader/>
@@ -14,9 +16,17 @@ const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, ..
 
     const onMainPhotoSelected = (e) => {
         debugger
-        if (e.target.files.length){
-           savePhoto (e.target.files[0])
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0])
         }
+    }
+
+    const onSubmit = (formData) => {
+        saveProfile(formData).then(
+            () => {
+                setEditMode(false)
+            }
+        )
     }
 
     return (
@@ -30,8 +40,26 @@ const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, ..
                     {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 </div>
             </div>
+            <div>
+                {editMode
+                    ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+                    : <ProfileData goToEditMode={() => {
+                        setEditMode(true)
+                    }} profile={profile} isOwner={isOwner}/>}
+            </div>
             {/*status*/}
             <ProfileStatusWithHooks status={status} updateStatusThunk={updateStatusThunk}/>
+
+        </div>
+    );
+}
+
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
+    return (
+        <div>
+            {isOwner && <div>
+                <button onClick={goToEditMode}>Edit</button>
+            </div>}
             {/*fullName*/}
             <div>
                 <p><strong>Full Name:</strong> {profile.fullName}</p>
@@ -39,49 +67,29 @@ const ProfileInfo = ({profile, status, updateStatusThunk, isOwner, savePhoto, ..
             {/*about*/}
             <div>
                 {profile.aboutMe != null ?
-                <p><strong>About Me:</strong> {profile.aboutMe}</p> : ''}
+                    <p><strong>About Me:</strong> {profile.aboutMe}</p> : ''}
             </div>
             {/*social*/}
             <div>
-                {/*{social("facebook", "Facebook", props)}*/}
-                {profile.contacts.facebook != null ?
-                    <a href={profile.contacts.facebook}><strong>Facebook</strong></a> : ''}
-            </div>
-            <div>
-                {/*{social("website", "Website", props)}*/}
-                {profile.contacts.website != null ?
-                    <a href={profile.contacts.website}><strong>Website</strong></a> : ''}
-            </div>
-            <div>
-                {profile.contacts.vk != null ? <a href={profile.contacts.vk}><strong>VK</strong></a> : ''}
-            </div>
-            <div>
-                {profile.contacts.twitter != null ?
-                    <a href={profile.contacts.twitter}><strong>Twitter</strong></a> : ''}
-            </div>
-            <div>
-                {profile.contacts.instagram != null ?
-                    <a href={profile.contacts.instagram}><strong>Instagram</strong></a> : ''}
-            </div>
-            <div>
-                {profile.contacts.youtube != null ?
-                    <a href={profile.contacts.youtube}><strong>YouTube</strong></a> : ''}
-            </div>
-            <div>
-                {profile.contacts.github != null ?
-                    <a href={profile.contacts.github}><strong>GitHub</strong></a> : ''}
-            </div>
-            <div>
-                {profile.contacts.mainLink != null ?
-                    <a href={profile.contacts.mainLink}><strong>MainLink</strong></a> : ''}
+                <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+            })}
             </div>
             {/*lookingForAJob*/}
             <div>
                 {profile.lookingForAJob !== false ?
-                    <p><strong>Looking For A Job:</strong> {profile.lookingForAJobDescription}</p> : ''}
+                    <p><strong>Looking For A Job:</strong> {profile.lookingForAJobDescription}</p>
+                    : <p><strong>Looking For A Job:</strong> No</p>}
             </div>
         </div>
-    );
+    )
+}
+
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <div className={style.contact}>
+        <a href={contactValue}><strong>{contactTitle}</strong></a>
+    </div>
 }
 
 export default ProfileInfo;
